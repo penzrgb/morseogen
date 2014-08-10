@@ -2,7 +2,30 @@ require_relative 'morse'
 
 class MorseGenerator
   def self.generate(str)
-    self.morse_map[str]
+    code = ""
+    duration = 0
+    str.upcase!
+
+    str.each_char.with_index do |c, index|
+      next if !self.is_digit_or_number? c
+      m = self.morse_map[c]
+      code += m.code
+      duration += m.duration
+
+      code += if self.is_digit_or_number? str[index + 1]
+               duration += 3
+               " " * 3
+             else
+               duration += 7
+               " " * 7
+             end
+    end
+
+    Morse.new(code: code, duration: duration)
+  end
+
+  def self.is_digit_or_number?(c)
+    self.numeric?(c) || self.letter?(c)
   end
 
   def self.morse_map
@@ -44,5 +67,13 @@ class MorseGenerator
       "9" => Morse.new(code: "— — — — ·"), 
       "0" => Morse.new(code: "— — — — —")
     }
+  end
+
+  def self.numeric?(lookAhead)
+    lookAhead =~ /[0-9]/
+  end
+
+  def self.letter?(lookAhead)
+    lookAhead =~ /[A-Za-z]/
   end
 end

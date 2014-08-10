@@ -9,12 +9,12 @@ describe MorseGenerator do
 
     it "generates correct morse code for A" do
       m = MorseGenerator.generate "A"
-      expect(m.code).to eq "· —"
+      expect(m.code).to eq "· —       "
     end
 
     it "generates correct duration for A" do
       m = MorseGenerator.generate "A"
-      expect(m.duration).to eq 5
+      expect(m.duration).to eq 12
     end
 
     it "generates correct morse code for SOS" do
