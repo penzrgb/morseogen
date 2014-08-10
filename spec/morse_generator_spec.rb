@@ -26,5 +26,15 @@ describe MorseGenerator do
       m = MorseGenerator.generate "SOS"
       expect(m.duration).to eq 34 
     end
+
+    it "generates the correct morse code for HI PALS" do
+      m = MorseGenerator.generate "HI PALS"
+      expect(m.code).to eq "· · · ·   · ·       · — — ·   · —   · — · ·   · · ·       "
+    end
+
+    it "generates the correct duration for HI PALS" do
+      m = MorseGenerator.generate "HI PALS"
+      expect(m.duration).to eq 66
+    end
   end
 end
