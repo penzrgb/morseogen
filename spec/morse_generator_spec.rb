@@ -1,5 +1,5 @@
-require 'morse_generator'
-require 'morse'
+require_relative '../morse_generator'
+require_relative '../morse'
 
 describe MorseGenerator do
   describe "#generate" do
